@@ -1,5 +1,7 @@
+import RecipeList from "./RecipeList";
+
 function App() {
-  return null;
+  return <RecipeList />;
 }
 
 export default App;
