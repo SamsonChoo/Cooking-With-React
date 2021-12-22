@@ -1,12 +1,16 @@
+import IngredientList from "./IngredientList";
+import { IIngredient } from "./Interface";
+
 interface Props {
   name: string;
   servings: number;
   cookTime: string;
   instructions: string;
+  ingredients: IIngredient.Ingredient[];
 }
 
 export default function Recipe(props: Props) {
-  const { name, servings, cookTime, instructions } = props;
+  const { name, servings, cookTime, instructions, ingredients } = props;
   return (
     <div>
       <div>
@@ -27,6 +31,12 @@ export default function Recipe(props: Props) {
       <div>
         <span>Instructions:</span>
         <div>{instructions}</div>
+      </div>
+      <div>
+        <span>Ingredients:</span>
+        <div>
+          <IngredientList ingredients={ingredients} />
+        </div>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ export default function RecipeList(props: Props) {
           servings={recipe.servings}
           cookTime={recipe.cookTime}
           instructions={recipe.instructions}
+          ingredients={recipe.ingredients}
         />
       ))}
     </div>

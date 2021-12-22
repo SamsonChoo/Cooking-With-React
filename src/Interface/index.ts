@@ -1,3 +1,4 @@
 import IRecipe from "./recipe";
+import IIngredient from "./ingredient";
 
-export { IRecipe }; // eslint-disable-line
+export { IRecipe, IIngredient };

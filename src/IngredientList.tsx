@@ -1,13 +1,8 @@
 import Ingredient from "./Ingredient";
-
-interface IIngredient {
-  id: number;
-  name: string;
-  amount: string;
-}
+import { IIngredient } from "./Interface";
 
 interface Props {
-  ingredients: IIngredient[];
+  ingredients: IIngredient.Ingredient[];
 }
 
 export default function IngredientList(props: Props) {
