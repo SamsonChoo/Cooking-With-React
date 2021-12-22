@@ -1,15 +1,8 @@
 import Recipe from "./Recipe";
-
-interface IRecipe {
-  id: number;
-  name: string;
-  servings: number;
-  cookTime: string;
-  instructions: string;
-}
+import { IRecipe } from "./Interface";
 
 interface Props {
-  recipes: IRecipe[];
+  recipes: IRecipe.Recipe[];
 }
 
 export default function RecipeList(props: Props) {

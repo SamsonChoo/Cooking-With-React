@@ -1,14 +1,7 @@
 import RecipeList from "./RecipeList";
+import { IRecipe } from "./Interface";
 
-interface IRecipe {
-  id: number;
-  name: string;
-  servings: number;
-  cookTime: string;
-  instructions: string;
-}
-
-const sampleRecipes: IRecipe[] = [
+const sampleRecipes: IRecipe.Recipe[] = [
   {
     id: 1,
     name: "Plain Chicken",
