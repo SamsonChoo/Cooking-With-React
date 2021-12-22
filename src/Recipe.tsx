@@ -1,8 +1,16 @@
-export default function Recipe() {
+interface Props {
+  name: string;
+  servings: number;
+  cookTime: string;
+  instructions: string;
+}
+
+export default function Recipe(props: Props) {
+  const { name, servings, cookTime, instructions } = props;
   return (
     <div>
       <div>
-        <h3>Plain Chicken</h3>
+        <h3>{name}</h3>
         <div>
           <button type="button">Edit</button>
           <button type="button">Delete</button>
@@ -10,15 +18,15 @@ export default function Recipe() {
       </div>
       <div>
         <span>Cook Time:</span>
-        <span>1:45</span>
+        <span>{cookTime}</span>
       </div>
       <div>
         <span>Servings:</span>
-        <span>3</span>
+        <span>{servings}</span>
       </div>
       <div>
         <span>Instructions:</span>
-        <div>1. Put Salt on chicken 2. Put chicken in oven 3. Eat chicken</div>
+        <div>{instructions}</div>
       </div>
     </div>
   );
