@@ -8,7 +8,7 @@ interface Props {
 export default function RecipeList(props: Props) {
   const { recipes } = props;
   return (
-    <>
+    <div className="recipe-list">
       <div>
         {recipes.map((recipe) => (
           <Recipe
@@ -21,7 +21,11 @@ export default function RecipeList(props: Props) {
           />
         ))}
       </div>
-      <button type="button">Add Recipe</button>
-    </>
+      <div className="recipe-list__add-recipe-btn-container">
+        <button className="btn btn--primary" type="button">
+          Add Recipe
+        </button>
+      </div>
+    </div>
   );
 }
