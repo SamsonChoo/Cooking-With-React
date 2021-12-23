@@ -12,13 +12,15 @@ interface Props {
 export default function Recipe(props: Props) {
   const { name, servings, cookTime, instructions, ingredients } = props;
   return (
-    <div>
-      <div>
-        <h3>{name}</h3>
-        <div>
-          <button type="button">Edit</button>
-          <button type="button">Delete</button>
-        </div>
+    <div className="recipe">
+      <div className="recipe__header">
+        <h3 className="recipe__title">{name}</h3>
+        <button className="btn btn--primary mr-1" type="button">
+          Edit
+        </button>
+        <button className="btn btn--danger" type="button">
+          Delete
+        </button>
       </div>
       <div>
         <span>Cook Time:</span>

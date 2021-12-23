@@ -1,5 +1,6 @@
 @import-normalize;
 @import "recipe-list.css";
+@import "recipe.css";
 @import "button.css";
 @import "font.css";
 
@@ -16,4 +17,8 @@ body {
 
 html {
   font-size: 25px;
+}
+
+.mr-1 {
+  margin-right: 5px;
 }
