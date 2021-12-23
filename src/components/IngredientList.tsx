@@ -14,5 +14,5 @@ export default function IngredientList(props: Props) {
       amount={ingredient.amount}
     />
   ));
-  return <div>{ingredientElements}</div>;
+  return <div className="ingredient-grid">{ingredientElements}</div>;
 }
