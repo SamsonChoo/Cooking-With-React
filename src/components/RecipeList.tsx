@@ -1,5 +1,5 @@
 import Recipe from "./Recipe";
-import { IRecipe } from "./Interface/index";
+import { IRecipe } from "../interface";
 
 interface Props {
   recipes: IRecipe.Recipe[];

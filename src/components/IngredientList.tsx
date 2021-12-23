@@ -1,5 +1,5 @@
 import Ingredient from "./Ingredient";
-import { IIngredient } from "./Interface";
+import { IIngredient } from "../interface";
 
 interface Props {
   ingredients: IIngredient.Ingredient[];

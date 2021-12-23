@@ -1,5 +1,5 @@
 import IngredientList from "./IngredientList";
-import { IIngredient } from "./Interface";
+import { IIngredient } from "../interface";
 
 interface Props {
   name: string;
