@@ -1,5 +1,6 @@
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
+import "../css/App.css";
 
 const sampleRecipes: IRecipe.Recipe[] = [
   {
