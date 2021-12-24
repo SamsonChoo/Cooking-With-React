@@ -23,6 +23,6 @@
   background-color: hsl(200, 100%, 35%);
 }
 
-.btn--primary:hover {
+.btn--danger:hover {
   background-color: hsl(0, 100%, 35%);
 }
