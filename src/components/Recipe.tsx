@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import IngredientList from "./IngredientList";
 import { IRecipe } from "../interface";
+import RecipeContext from "../context";
 
 interface Props {
   recipe: IRecipe.Recipe;
-  handleRecipeDelete: (id: number | string) => void;
 }
 
 export default function Recipe(props: Props) {
-  const { recipe, handleRecipeDelete } = props;
-  const { id, name, servings, cookTime, instructions, ingredients } = recipe;
+  const {
+    recipe: { id, name, servings, cookTime, instructions, ingredients },
+  } = props;
+  const handleRecipeDelete = useContext(RecipeContext);
   return (
     <div className="recipe">
       <div className="recipe__header">

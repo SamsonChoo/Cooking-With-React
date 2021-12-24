@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
 import "../css/App.css";
+import RecipeContext from "../context";
 
 const sampleRecipes: IRecipe.Recipe[] = [
   {
@@ -53,12 +54,14 @@ function App() {
     [recipes]
   );
 
+  const recipeContextValue = useCallback(handleRecipeDelete, [
+    handleRecipeDelete,
+  ]);
+
   return (
-    <RecipeList
-      recipes={recipes}
-      handleRecipeAdd={handleRecipeAdd}
-      handleRecipeDelete={handleRecipeDelete}
-    />
+    <RecipeContext.Provider value={recipeContextValue}>
+      <RecipeList recipes={recipes} handleRecipeAdd={handleRecipeAdd} />
+    </RecipeContext.Provider>
   );
 }
 
