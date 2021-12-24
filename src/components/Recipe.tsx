@@ -1,16 +1,14 @@
 import IngredientList from "./IngredientList";
-import { IIngredient } from "../interface";
+import { IRecipe } from "../interface";
 
 interface Props {
-  name: string;
-  servings: number;
-  cookTime: string;
-  instructions: string;
-  ingredients: IIngredient.Ingredient[];
+  recipe: IRecipe.Recipe;
+  handleRecipeDelete: (id: number | string) => void;
 }
 
 export default function Recipe(props: Props) {
-  const { name, servings, cookTime, instructions, ingredients } = props;
+  const { recipe, handleRecipeDelete } = props;
+  const { id, name, servings, cookTime, instructions, ingredients } = recipe;
   return (
     <div className="recipe">
       <div className="recipe__header">
@@ -18,7 +16,11 @@ export default function Recipe(props: Props) {
         <button className="btn btn--primary mr-1" type="button">
           Edit
         </button>
-        <button className="btn btn--danger" type="button">
+        <button
+          className="btn btn--danger"
+          type="button"
+          onClick={() => handleRecipeDelete(id)}
+        >
           Delete
         </button>
       </div>

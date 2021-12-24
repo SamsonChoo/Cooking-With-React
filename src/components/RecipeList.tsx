@@ -4,21 +4,19 @@ import { IRecipe } from "../interface";
 interface Props {
   recipes: IRecipe.Recipe[];
   handleRecipeAdd: () => void;
+  handleRecipeDelete: (id: string | number) => void;
 }
 
 export default function RecipeList(props: Props) {
-  const { recipes, handleRecipeAdd } = props;
+  const { recipes, handleRecipeAdd, handleRecipeDelete } = props;
   return (
     <div className="recipe-list">
       <div>
         {recipes.map((recipe) => (
           <Recipe
             key={recipe.id}
-            name={recipe.name}
-            servings={recipe.servings}
-            cookTime={recipe.cookTime}
-            instructions={recipe.instructions}
-            ingredients={recipe.ingredients}
+            recipe={recipe}
+            handleRecipeDelete={handleRecipeDelete}
           />
         ))}
       </div>

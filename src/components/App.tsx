@@ -46,7 +46,20 @@ function App() {
     setRecipes([...recipes, newRecipe]);
   }, [recipes]);
 
-  return <RecipeList recipes={recipes} handleRecipeAdd={handleRecipeAdd} />;
+  const handleRecipeDelete = useCallback(
+    (id: string | number) => {
+      setRecipes(recipes.filter((recipe) => recipe.id !== id));
+    },
+    [recipes]
+  );
+
+  return (
+    <RecipeList
+      recipes={recipes}
+      handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDelete={handleRecipeDelete}
+    />
+  );
 }
 
 export default App;
