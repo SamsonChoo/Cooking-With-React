@@ -1,3 +1,5 @@
+import { useState, useCallback } from "react";
+import { v4 as uuidv4 } from "uuid";
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
 import "../css/App.css";
@@ -29,7 +31,22 @@ const sampleRecipes: IRecipe.Recipe[] = [
 ];
 
 function App() {
-  return <RecipeList recipes={sampleRecipes} />;
+  const [recipes, setRecipes] = useState(sampleRecipes);
+
+  const handleRecipeAdd = useCallback(() => {
+    const newRecipe: IRecipe.Recipe = {
+      id: uuidv4(),
+      name: "New",
+      servings: 1,
+      cookTime: "1:00",
+      instructions: "Instr.",
+      ingredients: [{ id: uuidv4(), name: "Name", amount: "1 Tbs" }],
+    };
+
+    setRecipes([...recipes, newRecipe]);
+  }, [recipes]);
+
+  return <RecipeList recipes={recipes} handleRecipeAdd={handleRecipeAdd} />;
 }
 
 export default App;
