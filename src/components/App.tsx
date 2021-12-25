@@ -1,9 +1,11 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
 import "../css/App.css";
 import RecipeContext from "../context";
+
+const LOCAL_STORAGE_KEY = "cookingWithReact.recipes";
 
 const sampleRecipes: IRecipe.Recipe[] = [
   {
@@ -33,6 +35,17 @@ const sampleRecipes: IRecipe.Recipe[] = [
 
 function App() {
   const [recipes, setRecipes] = useState(sampleRecipes);
+
+  useEffect(() => {
+    const recipeJSON: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (recipeJSON) {
+      setRecipes(JSON.parse(recipeJSON));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+  }, [recipes]);
 
   const handleRecipeAdd = useCallback(() => {
     const newRecipe: IRecipe.Recipe = {
