@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
+import RecipeEdit from "./RecipeEdit";
 import "../css/App.css";
 import RecipeContext from "../context";
 
@@ -74,6 +75,7 @@ function App() {
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} handleRecipeAdd={handleRecipeAdd} />
+      <RecipeEdit />
     </RecipeContext.Provider>
   );
 }
