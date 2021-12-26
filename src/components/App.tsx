@@ -72,6 +72,13 @@ function App() {
     [recipes]
   );
 
+  function handleRecipeChange(id: number | string, recipe: IRecipe.Recipe) {
+    const newRecipes = [...recipes];
+    const index = newRecipes.findIndex((r) => r.id === id);
+    newRecipes[index] = recipe;
+    setRecipes(newRecipes);
+  }
+
   function handleRecipeSelect(id: number | string) {
     setSelectedRecipeId(id);
   }
@@ -80,8 +87,9 @@ function App() {
     () => ({
       handleRecipeDelete,
       handleRecipeSelect,
+      handleRecipeChange,
     }),
-    []
+    [recipes]
   );
 
   return (

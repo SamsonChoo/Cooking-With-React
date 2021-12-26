@@ -1,14 +1,39 @@
+import { useContext, useCallback } from "react";
 import RecipeIngredientEdit from "./RecipeIngredientEdit";
-import { IRecipe } from "../interface";
+import { IRecipe, IIngredient } from "../interface";
+import RecipeContext from "../context";
 
 interface Props {
   recipe: IRecipe.Recipe;
 }
 
+interface RecipeFields {
+  name?: string;
+  cookTime?: string;
+  servings?: number;
+  instructions?: string;
+  ingredients?: IIngredient.Ingredient[];
+}
+
 export default function RecipeEdit(props: Props) {
-  const {
-    recipe: { name, cookTime, servings, instructions, ingredients },
-  } = props;
+  const { recipe } = props;
+  const { id, name, cookTime, servings, instructions, ingredients } = recipe;
+  const { handleRecipeChange } = useContext(RecipeContext);
+
+  function handleChange(changes: RecipeFields) {
+    handleRecipeChange(id, { ...recipe, ...changes });
+  }
+
+  const handleIngredientChange = useCallback(
+    (ingredient_id: number | string, ingredient: IIngredient.Ingredient) => {
+      const newIngredients = [...recipe.ingredients];
+      const index = newIngredients.findIndex((i) => i.id === ingredient_id);
+      newIngredients[index] = ingredient;
+      handleChange({ ingredients: newIngredients });
+    },
+    [recipe]
+  );
+
   return (
     <div className="recipe-edit">
       <div className="recipe-edit__remove-button-container">
@@ -26,6 +51,7 @@ export default function RecipeEdit(props: Props) {
           id="name"
           className="recipe-edit__input"
           value={name}
+          onInput={(e) => handleChange({ name: e.currentTarget.value })}
         />
         <label htmlFor="cookTime" className="recipe-edit__label">
           Cook Time
@@ -36,6 +62,7 @@ export default function RecipeEdit(props: Props) {
           id="cookTime"
           className="recipe-edit__input"
           value={cookTime}
+          onInput={(e) => handleChange({ cookTime: e.currentTarget.value })}
         />
         <label htmlFor="servings" className="recipe-edit__label">
           Servings
@@ -47,6 +74,9 @@ export default function RecipeEdit(props: Props) {
           id="servings"
           className="recipe-edit__input"
           value={servings}
+          onInput={(e) =>
+            handleChange({ servings: Number(e.currentTarget.value) })
+          }
         />
         <label htmlFor="instructions" className="recipe-edit__label">
           Instructions
@@ -56,6 +86,7 @@ export default function RecipeEdit(props: Props) {
           id="instructions"
           className="recipe-edit__input"
           value={instructions}
+          onInput={(e) => handleChange({ instructions: e.currentTarget.value })}
         />
       </div>
       <br />
@@ -67,7 +98,11 @@ export default function RecipeEdit(props: Props) {
         <div>Amount</div>
         <div />
         {ingredients.map((ingredient) => (
-          <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
+          <RecipeIngredientEdit
+            key={ingredient.id}
+            ingredient={ingredient}
+            handleIngredientChange={handleIngredientChange}
+          />
         ))}
       </div>
       <div className="recipe-edit__add-ingredient-btn-container">
