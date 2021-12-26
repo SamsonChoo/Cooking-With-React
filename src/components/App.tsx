@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import RecipeList from "./RecipeList";
 import { IRecipe } from "../interface";
@@ -35,7 +35,11 @@ const sampleRecipes: IRecipe.Recipe[] = [
 ];
 
 function App() {
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string | number>();
   const [recipes, setRecipes] = useState(sampleRecipes);
+  const selectedRecipe = recipes.find(
+    (recipe) => recipe.id === selectedRecipeId
+  );
 
   useEffect(() => {
     const recipeJSON: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -68,9 +72,17 @@ function App() {
     [recipes]
   );
 
-  const recipeContextValue = useCallback(handleRecipeDelete, [
-    handleRecipeDelete,
-  ]);
+  function handleRecipeSelect(id: number | string) {
+    setSelectedRecipeId(id);
+  }
+
+  const recipeContextValue = useMemo(
+    () => ({
+      handleRecipeDelete,
+      handleRecipeSelect,
+    }),
+    []
+  );
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>

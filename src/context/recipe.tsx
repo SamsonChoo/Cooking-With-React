@@ -1,7 +1,13 @@
 import { createContext } from "react";
 
-const RecipeContext = createContext<(id: string | number) => void>(
-  (id) => null // eslint-disable-line @typescript-eslint/no-unused-vars
-);
+interface RecipeContextHandlers {
+  handleRecipeDelete: (id: string | number) => void;
+  handleRecipeSelect: (id: string | number) => void;
+}
+
+const RecipeContext = createContext<RecipeContextHandlers>({
+  handleRecipeDelete: () => null,
+  handleRecipeSelect: () => null,
+});
 
 export default RecipeContext;
